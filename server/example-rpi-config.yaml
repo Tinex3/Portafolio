@@ -1,0 +1,68 @@
+# Ejemplo de configuración para Raspberry Pi (config.yaml)
+# Copia esto y ajusta los valores según tu entorno
+
+# === Identidad del dispositivo ===
+device_id: "sim_rpi_lab01"  # Identificador único de este dispositivo
+
+# === API Backend ===
+api_url: "http://your-backend.example.com/api/stability"  # CAMBIAR: URL de tu servidor
+api_key: ""  # Opcional: Token si agregaste autenticación en el backend
+max_retries: 3  # Reintentos si falla el envío
+
+# === Red celular (módulo SIMCom) ===
+serial_port: "/dev/ttyUSB0"      # Puerto serial del módulo SIMCom
+serial_baudrate: 115200           # Velocidad del puerto
+serial_timeout: 10                # Timeout en segundos
+
+# === Ciclo de monitoreo ===
+send_interval: 5                  # Segundos entre envíos a la API
+monitor_interval: 10              # Segundos entre lecturas AT (para logs locales)
+check_signal_interval: 2          # Segundos entre verificaciones de señal
+
+# === Timeouts AT ===
+at_http_timeout: 30               # Timeout de respuesta HTTP desde el servidor (segundos)
+at_command_timeout: 5             # Timeout para comandos AT individuales
+
+# === Almacenamiento local ===
+database_path: "/home/pi/sim_test.db"  # Archivo SQLite local (para análisis offline)
+
+# === Logging ===
+log_level: "INFO"                 # DEBUG, INFO, WARNING, ERROR
+log_file: "/var/log/sim_test.log" # Archivo de logs
+
+# === Watchdog ===
+enable_watchdog: true             # Reiniciar si falla el módulo
+watchdog_timeout: 300             # Segundos sin datos antes de reiniciar
+
+# === Ejemplos de valores con diferentes operadores ===
+# Si tienes múltiples Raspberry Pi, personaliza device_id:
+#   sim_rpi_lab01
+#   sim_rpi_lab02
+#   sim_rpi_field01
+#   etc.
+
+# Para desarrollo local, puedes usar:
+#   api_url: "http://localhost:5876/api/stability"
+#
+# Para producción con Cloudflare:
+#   api_url: "https://tu-dominio.com/api/stability"
+#   api_key: "tu-token-secreto"  # Si lo configuraste
+
+# === Debugging ===
+# Para probar la conexión sin correr todo el stack:
+# 
+#   python3 -c "
+#   import requests
+#   payload = {
+#       'device_id': 'sim_rpi_test',
+#       'timestamp': '2026-04-16T14:23:07.412Z',
+#       'csq': 22,
+#       'network': 'registrado',
+#       'network_type': 'LTE',
+#       'registered': True,
+#       'uptime_sec': 3600,
+#       'attempt': 1
+#   }
+#   r = requests.post('http://localhost:5876/api/stability', json=payload)
+#   print(r.status_code, r.text)
+#   "

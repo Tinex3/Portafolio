@@ -1,6 +1,28 @@
 services:
-  portfolio:
+  api:
+    build: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    volumes:
+      - stability_data:/data/db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  web:
     build: .
     ports:
       - "5876:80"
+    depends_on:
+      api:
+        condition: service_healthy
     restart: unless-stopped
+
+volumes:
+  stability_data:
