@@ -201,6 +201,27 @@ app.get('/api/stats', (req, res) => {
   });
 });
 
+// Delete all records for a device
+app.delete('/api/stability/:device_id', (req, res) => {
+  const { device_id } = req.params;
+
+  if (!device_id || device_id.length === 0) {
+    return res.status(400).json({ error: 'Invalid device_id' });
+  }
+
+  const query = `DELETE FROM stability_records WHERE device_id = ?`;
+
+  db.run(query, [device_id], function(err) {
+    if (err) {
+      console.error('Error deleting records:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    console.log(`[${new Date().toISOString()}] Deleted all records for device: ${device_id} (${this.changes} records)`);
+    res.status(200).json({ status: 'ok', deleted_records: this.changes, device_id: device_id });
+  });
+});
+
 // Error handling
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
@@ -211,10 +232,11 @@ app.use((err, req, res, next) => {
 db.serialize(() => {
   app.listen(PORT, () => {
     console.log(`Stability API server running on port ${PORT}`);
-    console.log(`POST  /api/stability      - Receive stability data`);
-    console.log(`GET   /api/health         - Health check`);
-    console.log(`GET   /api/stability/:id  - Get latest records for device`);
-    console.log(`GET   /api/stats          - Get stats for all devices`);
+    console.log(`POST   /api/stability      - Receive stability data`);
+    console.log(`GET    /api/health         - Health check`);
+    console.log(`GET    /api/stability/:id  - Get latest records for device`);
+    console.log(`GET    /api/stats          - Get stats for all devices`);
+    console.log(`DELETE /api/stability/:id  - Delete all records for device`);
   });
 });
 

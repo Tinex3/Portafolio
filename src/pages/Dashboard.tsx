@@ -30,10 +30,43 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [detailsLoading, setDetailsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const apiUrl = import.meta.env.PROD ? '/api' : 'https://benrigom.site/api';
 
-  // Fetch stats
+  // Delete device
+  const handleDeleteDevice = async (deviceId: string) => {
+    if (!window.confirm(`¿Estás seguro de que quieres eliminar todos los registros de "${deviceId}"?\n\nEsta acción no se puede deshacer.`)) {
+      return;
+    }
+
+    setDeleting(true);
+    try {
+      const response = await fetch(`${apiUrl}/stability/${deviceId}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) throw new Error('Failed to delete device');
+      
+      const result = await response.json();
+      console.log(`Deleted ${result.deleted_records} records for device ${deviceId}`);
+      
+      // Refresh stats
+      const statsResponse = await fetch(`${apiUrl}/stats`);
+      const statsData = await statsResponse.json();
+      setStats(statsData);
+      
+      // Reset selected device if it was deleted
+      if (selectedDevice === deviceId) {
+        setSelectedDevice(statsData.length > 0 ? statsData[0].device_id : null);
+      }
+      
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error deleting device');
+    } finally {
+      setDeleting(false);
+    }
+  };
   useEffect(() => {
     const fetchStats = async () => {
       try {
@@ -147,9 +180,18 @@ export default function Dashboard() {
         {/* Device Details */}
         {selectedDevice && (
           <div className="bg-gray-800 rounded-lg border border-gray-700 p-6">
-            <h2 className="text-2xl font-bold mb-4">
-              Details: <span className="text-blue-400">{selectedDevice}</span>
-            </h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold">
+                Details: <span className="text-blue-400">{selectedDevice}</span>
+              </h2>
+              <button
+                onClick={() => handleDeleteDevice(selectedDevice)}
+                disabled={deleting}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 disabled:bg-red-800 text-white rounded-lg transition font-semibold"
+              >
+                {deleting ? '🗑️ Eliminando...' : '🗑️ Eliminar dispositivo'}
+              </button>
+            </div>
 
             {detailsLoading ? (
               <div className="flex justify-center py-8">
