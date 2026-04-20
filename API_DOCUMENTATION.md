@@ -181,6 +181,54 @@ GET /api/stats
 
 ---
 
+### 5. Eliminar Todos los Registros de un Dispositivo
+Elimina permanentemente todos los registros de un dispositivo específico. ⚠️ **Esta acción no se puede deshacer.**
+
+```
+DELETE /api/stability/{device_id}
+```
+
+**Parameters:**
+
+| Parámetro | Tipo | Descripción |
+|-----------|------|-------------|
+| `device_id` | string | ID del dispositivo a eliminar |
+
+**Example:**
+```bash
+DELETE /api/stability/test-device-001
+```
+
+**Response (200 OK):**
+```json
+{
+  "status": "ok",
+  "deleted_records": 42,
+  "device_id": "test-device-001"
+}
+```
+
+**Error Responses:**
+
+```json
+// 400 Bad Request - Invalid device_id
+{
+  "error": "Invalid device_id"
+}
+
+// 500 Internal Server Error
+{
+  "error": "Database error"
+}
+```
+
+**⚠️ Warning:**
+- Esta operación es **irreversible**
+- Elimina **todos** los registros del dispositivo
+- Úsalo solo para limpiar dispositivos de test o datos obsoletos
+
+---
+
 ## 📱 Implementation Examples
 
 ### Python (Raspberry Pi)
@@ -453,6 +501,11 @@ curl https://benrigom.site/api/stats | jq .
 curl 'https://benrigom.site/api/stability/test-device-001?limit=10' | jq .
 ```
 
+### Eliminar dispositivo (⚠️ Irreversible)
+```bash
+curl -X DELETE https://benrigom.site/api/stability/test-device-001
+```
+
 ---
 
 ## 🚀 Rate Limiting & Quotas
@@ -521,5 +574,5 @@ docker-compose logs api -f
 
 ---
 
-**Last Updated:** 17 de Abril 2026  
-**API Version:** 1.0
+**Last Updated:** 20 de Abril 2026  
+**API Version:** 1.0.1
