@@ -1,6 +1,6 @@
 import { skills } from '../../data/skills';
 
-const categories = ['Frontend', 'Backend', 'Embedded', 'DevOps / Cloud'] as const;
+const categories = ['Frontend', 'Backend & APIs', 'Datos', 'Embedded', 'DevOps / Cloud'] as const;
 
 export default function Skills() {
   return (
@@ -11,7 +11,7 @@ export default function Skills() {
         </h2>
         <div className="w-20 h-1 bg-violet-600 dark:bg-violet-400 mx-auto mb-12 rounded-full" />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
             <div
               key={category}

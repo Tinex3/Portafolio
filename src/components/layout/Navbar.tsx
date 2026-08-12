@@ -7,6 +7,8 @@ const navLinks = [
   { label: 'Proyectos', href: '#projects' },
   { label: 'Habilidades', href: '#skills' },
   { label: 'Experiencia', href: '#experience' },
+  { label: 'Formación', href: '#education' },
+  { label: 'Cloud', href: '#cloud' },
   { label: 'Contacto', href: '#contact' },
 ];
 
@@ -14,7 +16,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700/50">
+    <nav aria-label="Navegación principal" className="fixed left-0 right-0 top-0 z-50 border-b border-gray-200/80 bg-white/80 backdrop-blur-md dark:border-gray-700/50 dark:bg-gray-900/80">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <a href="#hero" className="text-xl font-bold text-gray-900 dark:text-white">
@@ -42,7 +44,9 @@ export default function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              aria-label="Menu"
+              aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={isOpen}
+              type="button"
               className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

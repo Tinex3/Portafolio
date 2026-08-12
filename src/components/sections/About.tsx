@@ -1,10 +1,11 @@
+import { profile } from '../../data/profile';
+
 export default function About() {
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white text-center mb-4">
-          Sobre mí
-        </h2>
+        <p className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">Perfil</p>
+        <h2 className="mb-4 text-center text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">Sobre mí</h2>
         <div className="w-20 h-1 bg-violet-600 dark:bg-violet-400 mx-auto mb-12 rounded-full" />
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -20,14 +21,10 @@ export default function About() {
           {/* Bio */}
           <div>
             <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
-              Soy Benjamin Riquelme, desarrollador Full Stack y de sistemas embebidos.
-              Trabajo con Python (FastAPI, Flask) y React en el lado web, y con Arduino,
-              ESP32, STM32 y Raspberry Pi en el mundo del hardware y firmware.
+              Soy {profile.name}, desarrollador Full Stack e IoT con formación en electrónica. Trabajo con Python, React, Next.js y PostgreSQL en productos web, y con C/C++, STM32, ESP32 y Raspberry Pi en sistemas embebidos.
             </p>
             <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
-              Me apasiona conectar el mundo físico con el digital — desde sensores IoT
-              con LoRaWAN hasta despliegues en AWS con Docker y Traefik. Siempre buscando
-              soluciones eficientes y bien diseñadas.
+              Me especializo en conectar hardware, software y nube: desde protocolos UART y Modbus RTU hasta telemetría con LTE y LoRaWAN, APIs, interfaces en tiempo real y arquitecturas AWS serverless con seguridad, colas, ETL y observabilidad.
             </p>
 
             <div className="grid grid-cols-2 gap-4">
@@ -36,8 +33,8 @@ export default function About() {
                 <p className="text-sm text-gray-500 dark:text-gray-400">Años de experiencia</p>
               </div>
               <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-800">
-                <p className="text-2xl font-bold text-violet-600 dark:text-violet-400">10+</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Proyectos completados</p>
+                <p className="text-2xl font-bold text-violet-600 dark:text-violet-400">30+</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Repositorios en GitHub</p>
               </div>
             </div>
           </div>

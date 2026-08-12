@@ -1,88 +1,40 @@
-import { type FormEvent, useState } from 'react';
+import { profile } from '../../data/profile';
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white text-center mb-4">
-          Contacto
-        </h2>
-        <div className="w-20 h-1 bg-violet-600 dark:bg-violet-400 mx-auto mb-4 rounded-full" />
-        <p className="text-center text-gray-600 dark:text-gray-300 mb-12">
-          ¿Tienes un proyecto en mente? ¡Hablemos!
-        </p>
+    <section id="contact" className="section-shell px-4 sm:px-6 lg:px-8">
+      <div className="content-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">Contacto</p>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">Hablemos de tu próximo proyecto</h2>
+          <p className="mt-5 leading-relaxed text-gray-600 dark:text-gray-300">
+            Si necesitas una aplicación web, una integración IoT o una solución embebida, escríbeme. Te responderé directamente por email.
+          </p>
+          <a href={`mailto:${profile.email}`} className="mt-8 inline-flex items-center gap-2 font-semibold text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300">
+            {profile.email} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
 
-        {submitted ? (
-          <div className="text-center p-8 rounded-2xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-            <svg className="w-12 h-12 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 className="text-lg font-semibold text-green-800 dark:text-green-300 mb-2">
-              ¡Mensaje enviado!
-            </h3>
-            <p className="text-green-600 dark:text-green-400 text-sm">
-              Gracias por escribirme. Te responderé lo antes posible.
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-8">
+          <h3 className="mb-6 text-lg font-semibold text-gray-900 dark:text-white">Escríbeme un mensaje</h3>
+          <form action={`mailto:${profile.email}`} method="post" encType="text/plain" className="space-y-5">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-shadow"
-                placeholder="Tu nombre"
-              />
+              <label htmlFor="name" className="form-label">Nombre</label>
+              <input type="text" id="name" name="name" required className="form-control" placeholder="Tu nombre" />
             </div>
-
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-shadow"
-                placeholder="tu@email.com"
-              />
+              <label htmlFor="email" className="form-label">Email</label>
+              <input type="email" id="email" name="email" required className="form-control" placeholder="tu@email.com" />
             </div>
-
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-shadow resize-none"
-                placeholder="Cuéntame sobre tu proyecto..."
-              />
+              <label htmlFor="message" className="form-label">Mensaje</label>
+              <textarea id="message" name="message" required rows={5} className="form-control resize-none" placeholder="Cuéntame sobre tu proyecto..." />
             </div>
-
-            <button
-              type="submit"
-              className="w-full px-8 py-3 text-base font-medium text-white bg-violet-600 hover:bg-violet-700 rounded-xl transition-colors cursor-pointer"
-            >
-              Enviar mensaje
+            <button type="submit" className="w-full cursor-pointer rounded-xl bg-violet-600 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-violet-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600">
+              Abrir correo
             </button>
           </form>
-        )}
+        </div>
       </div>
     </section>
   );

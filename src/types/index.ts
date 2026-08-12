@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   description: string;
   image?: string;
+  context?: string;
   tags: string[];
   liveUrl?: string;
   repoUrl?: string;
@@ -10,7 +11,7 @@ export interface Project {
 
 export interface Skill {
   name: string;
-  category: 'Frontend' | 'Backend' | 'Embedded' | 'DevOps / Cloud';
+  category: 'Frontend' | 'Backend & APIs' | 'Datos' | 'Embedded' | 'DevOps / Cloud';
 }
 
 export interface Experience {

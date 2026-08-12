@@ -1,16 +1,20 @@
+import { profile } from '../../data/profile';
+
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Benjamin Riquelme. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} {profile.shortName}. Todos los derechos reservados.
           </p>
+
+          <p className="text-sm text-gray-500 dark:text-gray-400">{profile.location}</p>
 
           <div className="flex items-center gap-4">
             {/* GitHub */}
             <a
-              href="https://github.com"
+              href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -23,7 +27,7 @@ export default function Footer() {
 
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com"
+              href={profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -36,7 +40,7 @@ export default function Footer() {
 
             {/* Email */}
             <a
-              href="mailto:tu@email.com"
+              href={`mailto:${profile.email}`}
               aria-label="Email"
               className="text-gray-500 dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
             >
