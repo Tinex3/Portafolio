@@ -3,26 +3,18 @@ import type { Experience } from '../types';
 export const experiences: Experience[] = [
   {
     company: 'Tekroy Electrónica LTDA',
-    role: 'Desarrollador Web Full Stack',
-    period: 'Sep 2024 — Presente',
+    role: 'Programador Full Stack',
+    period: 'Feb 2024 — Presente',
     description:
-      'Diseño, desarrollo y mantenimiento de plataformas para gestionar y monitorear dispositivos IoT. Implemento APIs en Python y Java, interfaces en React y Next.js, monitoreo local con Prometheus y Grafana, y arquitecturas AWS serverless.',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Python', 'Java', 'FastAPI', 'Flask', 'Prometheus', 'Grafana', 'AWS Lambda'],
+      'Progresión interna desde Técnico Electrónico a Firmware a Full Stack. Desarrollo y mantenimiento de plataforma IoT en producción con 53 dispositivos, ingesta cada 5 minutos, 100 usuarios y 98% uptime. APIs en Python (Flask, FastAPI) con WebSockets en tiempo real, frontend en React/TypeScript con PostgreSQL, e infraestructura AWS con Docker/Linux. Integración de Raspberry Pi, LoRaWAN, LTE y Modbus RTU.',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Python', '.NET', 'FastAPI', 'Flask', 'PostgreSQL', 'Docker', 'AWS Lambda'],
   },
   {
     company: 'Tekroy Electrónica LTDA',
-    role: 'Desarrollador de Sistemas Embebidos',
-    period: 'Abr 2024 — 2026',
+    role: 'Desarrollador de Firmware',
+    period: 'Feb 2024 — Presente',
     description:
       'Diseño e integración de firmware para STM32, ESP32 y Arduino. Desarrollo de controladores y comunicaciones UART, SPI, I2C y RS-485/Modbus RTU, además de soluciones con FreeRTOS, LoRaWAN y LTE.',
     technologies: ['C/C++', 'STM32', 'ESP32', 'FreeRTOS', 'Modbus RTU', 'LoRaWAN', 'LTE', 'PlatformIO'],
-  },
-  {
-    company: 'Tekroy Electrónica LTDA',
-    role: 'Técnico Electrónico',
-    period: 'Feb 2024 — 2026',
-    description:
-      'Integración y validación de hardware, diagnóstico de fallas, pruebas funcionales y soporte técnico en colaboración con equipos de electrónica y software.',
-    technologies: ['Electrónica', 'KiCad', 'STM32CubeIDE', 'Arduino IDE', 'Git'],
   },
 ];

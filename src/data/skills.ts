@@ -4,30 +4,23 @@ export const skills: Skill[] = [
   // Frontend
   { name: 'React', category: 'Frontend' },
   { name: 'Next.js', category: 'Frontend' },
-  { name: 'Ionic', category: 'Frontend' },
   { name: 'TypeScript', category: 'Frontend' },
   { name: 'JavaScript', category: 'Frontend' },
-  { name: 'HTML5', category: 'Frontend' },
-  { name: 'CSS3', category: 'Frontend' },
   { name: 'Tailwind CSS', category: 'Frontend' },
   { name: 'Vite', category: 'Frontend' },
 
   // Backend & APIs
   { name: 'Python', category: 'Backend & APIs' },
-  { name: 'Java', category: 'Backend & APIs' },
+  { name: '.NET', category: 'Backend & APIs' },
   { name: 'FastAPI', category: 'Backend & APIs' },
   { name: 'Flask', category: 'Backend & APIs' },
   { name: 'REST APIs', category: 'Backend & APIs' },
   { name: 'WebSockets', category: 'Backend & APIs' },
-  { name: 'Diseño de APIs', category: 'Backend & APIs' },
   { name: 'JWT / Cognito', category: 'Backend & APIs' },
-  { name: 'Bash Script', category: 'Backend & APIs' },
 
   // Data
   { name: 'PostgreSQL', category: 'Datos' },
   { name: 'SQLite', category: 'Datos' },
-  { name: 'SQL', category: 'Datos' },
-  { name: 'ETL y procesamiento de datos', category: 'Datos' },
 
   // Embedded
   { name: 'Arduino', category: 'Embedded' },
@@ -41,7 +34,6 @@ export const skills: Skill[] = [
   { name: 'FreeRTOS', category: 'Embedded' },
   { name: 'LTE', category: 'Embedded' },
   { name: 'LoRaWAN', category: 'Embedded' },
-  { name: 'LabView', category: 'Embedded' },
   { name: 'KiCad', category: 'Embedded' },
   { name: 'STM32CubeIDE', category: 'Embedded' },
 

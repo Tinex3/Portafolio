@@ -1,34 +1,27 @@
 export const profile = {
   name: 'Benjamin Delfin Riquelme Gomez',
   shortName: 'Benjamin Riquelme',
-  role: 'Desarrollador Full Stack e IoT',
-  location: 'Vina del Mar, Valparaiso, Chile',
+  role: 'Software Engineer | Python · React · AWS',
+  location: 'Viña del Mar, Valparaíso, Chile',
   email: 'b.riquelme.gomez@gmail.com',
   github: 'https://github.com/Tinex3',
-  linkedin: 'https://www.linkedin.com/in/benjamin-delfin-r/',
-  cvUrl: '/CV_Benjamin_Riquelme.pdf',
+  linkedin: 'https://linkedin.com/in/benjamindelfin-r',
+  cvUrl: '/CV_Benjamin_Riquelme_ATS_ES (1).pdf',
 } as const;
 
 export const education = [
   {
     institution: 'Instituto Profesional San Sebastian',
-    program: 'Ingenieria en Informatica',
+    program: 'Ingeniería en Informática',
     period: 'Mar 2025 - Dic 2028 (en curso)',
   },
   {
-    institution: 'Universidad Tecnica Federico Santa Maria',
-    program: 'Tecnico Universitario en Electronica',
+    institution: 'Universidad Técnica Federico Santa María',
+    program: 'Técnico Universitario en Electrónica',
     period: 'Mar 2020 - Dic 2023',
-  },
-  {
-    institution: 'Instituto Hispano Americano',
-    program: 'Tecnico de Nivel Medio en Electronica',
-    period: 'Mar 2014 - Oct 2019',
   },
 ] as const;
 
 export const certifications = [
-  'ONE | Inmersion en Agentes de IA',
-  'Trabajo en equipo',
-  'Liderazgo personal',
+  'Inmersión en Agentes de IA — Alura + Oracle Next Education (ONE), may. 2026',
 ] as const;

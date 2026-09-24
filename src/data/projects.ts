@@ -2,6 +2,16 @@ import type { Project } from '../types';
 
 export const projects: Project[] = [
   {
+    id: 5,
+    title: 'Dashboard IoT — Parcela (riego + seguridad)',
+    context: 'Proyecto destacado | FastAPI + Next.js + LoRaWAN',
+    description:
+      'Sistema de parcela en producción: riego de precisión (sensor NPK + ET + Open-Meteo) y seguridad exterior (PIR LoRaWAN con bloque horario). Pipeline punta a punta verificado: Heltec LoRaWAN → The Things Stack self-hosted → webhook FastAPI → PostgreSQL → Next.js. Deploy versionado con rollback y backup diario.',
+    tags: ['FastAPI', 'Next.js', 'PostgreSQL', 'LoRaWAN', 'TTS', 'Docker'],
+    liveUrl: 'https://dashboard.benrigom.site/dashboard/hogar',
+    repoUrl: 'https://github.com/Tinex3/Dashaboard-iot',
+  },
+  {
     id: 1,
     title: 'Chat Privado en Tiempo Real',
     context: 'Proyecto personal',
@@ -34,7 +44,7 @@ export const projects: Project[] = [
     title: 'Plataforma IoT para dispositivos de campo',
     context: 'Producto profesional | Tekroy Electrónica',
     description:
-      'Producto de Tekroy Electrónica para visualizar y gestionar dispositivos de campo desarrollados y comercializados por la empresa. Integra frontend en Next.js, APIs, procesamiento serverless, datos IoT, alertas, reportes y monitoreo con AWS, Prometheus y Grafana.',
-    tags: ['Next.js', 'AWS Lambda', 'API Gateway', 'Cognito', 'RDS', 'SQS'],
+      'Producto de Tekroy Electrónica para visualizar y gestionar 53 dispositivos de campo con ingesta cada 5 minutos, 100 usuarios y 98% uptime. APIs en Python (Flask, FastAPI) con WebSockets en tiempo real, frontend en React/TypeScript, PostgreSQL e infraestructura AWS con Docker/Linux.',
+    tags: ['React', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'AWS', 'Docker'],
   },
 ];
