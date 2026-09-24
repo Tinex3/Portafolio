@@ -1,0 +1,47 @@
+/* Skeletons (loading-states skill): misma forma que el contenido real,
+ * shimmer sutil, sin layout shift (dimensiones fijas), respeta
+ * prefers-reduced-motion (ver index.css que anula la animación). */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--skeleton-base);
+  border-radius: var(--border-radius-md);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--skeleton-shine),
+    transparent
+  );
+  animation: skeleton-shimmer var(--duration-slower) var(--easing-in) infinite;
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Entrada progresiva: fade + stagger 30-50ms vía --reveal-delay */
+.reveal-item {
+  animation: reveal-in var(--duration-normal) var(--easing-out) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

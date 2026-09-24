@@ -7,6 +7,9 @@ export interface Project {
   tags: string[];
   liveUrl?: string;
   repoUrl?: string;
+  highlights?: string[];
+  metrics?: string[];
+  featured?: boolean;
 }
 
 export interface Skill {
@@ -18,6 +21,9 @@ export interface Experience {
   company: string;
   role: string;
   period: string;
+  location?: string;
+  modality?: string;
   description: string;
+  achievements?: string[];
   technologies: string[];
 }

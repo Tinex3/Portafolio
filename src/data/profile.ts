@@ -2,11 +2,18 @@ export const profile = {
   name: 'Benjamin Delfin Riquelme Gomez',
   shortName: 'Benjamin Riquelme',
   role: 'Software Engineer | Python · React · AWS',
+  headline: 'Full Stack + IoT: llevo productos a producción (firmware → API → web → cloud)',
   location: 'Viña del Mar, Valparaíso, Chile',
+  availability: 'Disponible · remoto / híbrido en Valparaíso y Santiago',
   email: 'b.riquelme.gomez@gmail.com',
   github: 'https://github.com/Tinex3',
-  linkedin: 'https://linkedin.com/in/benjamindelfin-r',
-  cvUrl: '/CV_Benjamin_Riquelme_ATS_ES (1).pdf',
+  linkedin: 'https://www.linkedin.com/in/benjamin-delfin-r/',
+  cvUrl: '/CV_Benjamin_Riquelme.pdf',
+  openTo: ['Full Stack Developer', 'Backend Python', 'IoT / Embedded + Cloud'],
+  languages: [
+    { name: 'Español', level: 'Nativo' },
+    { name: 'Inglés', level: 'Intermedio técnico (lectura y documentación)' },
+  ],
 } as const;
 
 export const education = [

@@ -1,0 +1,172 @@
+/* Design tokens — Portafolio Benjamin Riquelme
+ * Filosofía: sobrio técnico (Rams/Scandinavian): base 4px, radios medios,
+ * un solo acento (violeta) + semánticos. Los componentes deben usar
+ * estas variables en lugar de valores hardcodeados.
+ * Modo oscuro: el proyecto usa clase `.dark` en <html> (Tailwind). */
+
+:root {
+  /* ---- Color: fondos ---- */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb; /* gray-50 */
+  --color-bg-tertiary: #f3f4f6; /* gray-100 */
+  --color-bg-inverse: #111827; /* gray-900 */
+
+  /* ---- Color: texto ---- */
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563; /* gray-600: contrasta ≥4.5:1 sobre blanco (AA) */
+  --color-text-tertiary: #6b7280; /* gray-500: solo texto grande o secundario no esencial */
+  --color-text-inverse: #f9fafb;
+  --color-text-link: #6d28d9; /* violet-700: AA sobre blanco */
+
+  /* ---- Color: bordes ---- */
+  --color-border-primary: #e5e7eb;
+  --color-border-secondary: #f3f4f6;
+  --color-border-focus: #7c3aed; /* violet-600 */
+
+  /* ---- Color: acento ---- */
+  --color-accent-primary: #6d28d9;
+  --color-accent-primary-hover: #5b21b6;
+  --color-accent-primary-active: #4c1d95;
+  --color-accent-secondary: #0e7490;
+  --color-accent-on-accent: #ffffff;
+
+  /* ---- Color: estados ---- */
+  --color-status-success: #047857;
+  --color-status-success-bg: #ecfdf5;
+  --color-status-warning: #b45309;
+  --color-status-warning-bg: #fffbeb;
+  --color-status-error: #b91c1c;
+  --color-status-error-bg: #fef2f2;
+  --color-status-info: #1d4ed8;
+  --color-status-info-bg: #eff6ff;
+
+  --color-surface-overlay: rgb(17 24 39 / 0.5);
+
+  /* ---- Espaciado (base 4px) ---- */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+  --space-12: 16rem;
+
+  /* ---- Tipografía ---- */
+  --font-family-body: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-display: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.875rem;
+  --font-size-3xl: 2.25rem;
+  --font-size-4xl: 3.75rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.75;
+
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.2em;
+
+  /* ---- Layout ---- */
+  --max-width-content: 68ch;
+  --max-width-wide: 72rem; /* max-w-6xl */
+  --max-width-page: 80rem;
+
+  --border-radius-sm: 0.375rem;
+  --border-radius-md: 0.75rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+  --border-radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgb(17 24 39 / 0.06);
+  --shadow-md: 0 4px 12px rgb(17 24 39 / 0.08);
+  --shadow-lg: 0 12px 32px rgb(76 29 149 / 0.12);
+  --shadow-focus: 0 0 0 3px rgb(124 58 237 / 0.35);
+
+  /* ---- Movimiento ---- */
+  --duration-instant: 50ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ---- Skeleton / loading ---- */
+  --skeleton-base: #e5e7eb;
+  --skeleton-shine: #f3f4f6;
+
+  /* ---- Breakpoints ---- */
+  --breakpoint-sm: 375px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* Modo oscuro intencional (no simple inversión): superficies cálidas
+ * gris-azuladas, texto ligeramente apagado para no quemar, acentos
+ * aclarados para mantener contraste AA. */
+.dark {
+  --color-bg-primary: #111827;
+  --color-bg-secondary: rgb(31 41 55 / 0.5); /* gray-800/50 */
+  --color-bg-tertiary: #1f2937;
+  --color-bg-inverse: #f9fafb;
+
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #d1d5db; /* gray-300: AA sobre gray-900 */
+  --color-text-tertiary: #9ca3af; /* gray-400: solo secundario */
+  --color-text-inverse: #111827;
+  --color-text-link: #c4b5fd; /* violet-300 */
+
+  --color-border-primary: rgb(55 65 81 / 0.6);
+  --color-border-secondary: #1f2937;
+  --color-border-focus: #a78bfa;
+
+  --color-accent-primary: #8b5cf6;
+  --color-accent-primary-hover: #7c3aed;
+  --color-accent-primary-active: #6d28d9;
+
+  --color-status-success: #6ee7b7;
+  --color-status-success-bg: rgb(6 78 59 / 0.4);
+  --color-status-error: #fca5a5;
+  --color-status-error-bg: rgb(127 29 29 / 0.4);
+  --color-status-info: #93c5fd;
+  --color-status-info-bg: rgb(30 58 138 / 0.4);
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.5);
+  --shadow-focus: 0 0 0 3px rgb(167 139 250 / 0.4);
+
+  --skeleton-base: #1f2937;
+  --skeleton-shine: #374151;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    /* Solo como respaldo si el toggle aún no corrió; el toggle con
+     * clase `.dark` es la fuente de verdad. Sin valores aquí para
+     * no pelear con Tailwind dark:. */
+  }
+}

@@ -1,87 +1,131 @@
 import { projects } from '../../data/projects';
 
 export default function Projects() {
+  const [featured, ...rest] = projects;
   return (
-    <section id="projects" className="section-shell bg-gray-50 dark:bg-gray-800/50">
+    <section id="projects" aria-labelledby="projects-title" className="section-shell bg-gray-50 dark:bg-gray-800/50">
       <div className="max-w-6xl mx-auto">
-        <p className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">Trabajo seleccionado</p>
-        <h2 className="mb-4 text-center text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">Proyectos</h2>
-        <div className="w-20 h-1 bg-violet-600 dark:bg-violet-400 mx-auto mb-12 rounded-full" />
+        <p className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">Trabajo seleccionado · verificable</p>
+        <h2 id="projects-title" className="mb-4 text-center text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">Proyectos</h2>
+        <p className="mx-auto mb-12 max-w-2xl text-center text-gray-600 dark:text-gray-300">
+          Todos tienen demo en vivo o repositorio público. Empiezo por el que está en producción hoy.
+        </p>
 
-        <div className="grid sm:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <article
-              key={project.id}
-              className="group rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg hover:border-violet-300 dark:hover:border-violet-600 transition-all duration-300"
-            >
-              <div className="flex h-48 items-center justify-between bg-gradient-to-br from-violet-600 to-slate-950 px-8 text-white">
-                <span className="font-mono text-sm text-violet-200">project_{project.id.toString().padStart(2, '0')}</span>
-                <svg className="w-12 h-12 text-violet-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-                </svg>
+        {featured && (
+          <article aria-labelledby={`project-title-${featured.id}`} className="mb-6 overflow-hidden rounded-2xl border-2 border-violet-500/60 bg-white shadow-lg dark:bg-gray-800">
+            <div className="grid lg:grid-cols-[1fr_1.2fr]">
+              <div className="flex min-h-56 flex-col justify-between bg-gradient-to-br from-violet-600 via-violet-700 to-slate-950 p-8 text-white">
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-violet-200"><span aria-hidden="true">★ </span>{featured.context}</p>
+                  <h3 id={`project-title-${featured.id}`} className="text-2xl font-bold leading-tight">{featured.title}</h3>
+                </div>
+                <ul aria-label={`Métricas de ${featured.title}`} className="mt-6 flex flex-wrap gap-2">
+                  {featured.metrics?.map((m) => (
+                    <li key={m} className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">{m}</li>
+                  ))}
+                </ul>
               </div>
+              <div className="p-6 sm:p-8">
+                <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{featured.description}</p>
+                <ul className="mb-4 space-y-2">
+                  {featured.highlights?.map((h) => (
+                    <li key={h} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-200">
+                      <span aria-hidden="true" className="mt-0.5 font-bold text-violet-600 dark:text-violet-400">›</span>{h}
+                    </li>
+                  ))}
+                </ul>
+                <ul aria-label={`Tecnologías de ${featured.title}`} className="mb-5 flex flex-wrap gap-2">
+                  {featured.tags.map((tag) => (
+                    <li key={tag} className="rounded-md bg-violet-100 px-2.5 py-1 text-xs font-medium text-violet-700 dark:bg-violet-900/30 dark:text-violet-300">{tag}</li>
+                  ))}
+                </ul>
+                <ProjectLinks title={featured.title} repoUrl={featured.repoUrl} liveUrl={featured.liveUrl} primary />
+              </div>
+            </div>
+          </article>
+        )}
 
-              <div className="p-6">
+        <ul className="grid gap-6 sm:grid-cols-2">
+          {rest.map((project) => (
+            <li key={project.id}>
+            <article
+              aria-labelledby={`project-title-${project.id}`}
+              className="group flex h-full flex-col rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 dark:hover:border-violet-600"
+            >
+              <div className="p-6 pb-0">
                 {project.context && (
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-violet-600 dark:text-violet-400">
-                    {project.context}
-                  </p>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-violet-600 dark:text-violet-400">{project.context}</p>
                 )}
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                <h3 id={`project-title-${project.id}`} className="mb-2 text-xl font-semibold text-gray-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                {project.metrics && (
+                  <ul aria-label={`Métricas de ${project.title}`} className="mb-3 flex flex-wrap gap-1.5">
+                    {project.metrics.map((m) => (
+                      <li key={m} className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">{m}</li>
+                    ))}
+                  </ul>
+                )}
+                <p className="mb-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{project.description}</p>
+                {project.highlights && (
+                  <ul className="mb-3 space-y-1.5">
+                    {project.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-2 text-[13px] text-gray-600 dark:text-gray-300">
+                        <span aria-hidden="true" className="mt-0.5 font-bold text-violet-600 dark:text-violet-400">›</span>{h}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="mt-auto p-6 pt-2">
+                <ul aria-label={`Tecnologías de ${project.title}`} className="mb-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 text-xs font-medium text-violet-600 dark:text-violet-400 bg-violet-100 dark:bg-violet-900/30 rounded-md"
-                    >
-                      {tag}
-                    </span>
+                    <li key={tag} className="rounded-md bg-violet-100 px-2.5 py-1 text-xs font-medium text-violet-600 dark:bg-violet-900/30 dark:text-violet-400">{tag}</li>
                   ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex gap-3">
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Ver código de ${project.title}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 transition-colors hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400"
-                    >
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                      Código
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Ver demo de ${project.title}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 transition-colors hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      Demo
-                    </a>
-                  )}
-                </div>
+                </ul>
+                <ProjectLinks title={project.title} repoUrl={project.repoUrl} liveUrl={project.liveUrl} />
               </div>
             </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
+  );
+}
+
+function ProjectLinks({ title, repoUrl, liveUrl, primary = false }: { title: string; repoUrl?: string; liveUrl?: string; primary?: boolean }) {
+  if (!repoUrl && !liveUrl) {
+    return <p className="text-sm text-gray-600 dark:text-gray-400">Producto interno de empresa — detalles disponibles en entrevista.</p>;
+  }
+  return (
+    <div className="flex flex-wrap gap-3">
+      {liveUrl && (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Ver demo en vivo de ${title} (se abre en pestaña nueva)`}
+          className={primary
+            ? 'inline-flex min-h-[44px] items-center gap-1.5 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-violet-700'
+            : 'inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-violet-600 hover:text-violet-700 dark:text-violet-400'}
+        >
+          Ver demo en vivo <span aria-hidden="true">↗</span>
+        </a>
+      )}
+      {repoUrl && (
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Ver código de ${title} (se abre en pestaña nueva)`}
+          className={primary
+            ? 'inline-flex min-h-[44px] items-center gap-1.5 rounded-xl border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 hover:border-violet-400 hover:text-violet-700 dark:border-gray-600 dark:text-gray-200'
+            : 'inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-violet-600 dark:text-gray-300'}
+        >
+          Código <span aria-hidden="true">↗</span>
+        </a>
+      )}
+    </div>
   );
 }
